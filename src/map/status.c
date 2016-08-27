@@ -2149,6 +2149,8 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 					return false;
 				if (tsc) {
 					if ((tsc->option&hide_flag) && !is_boss && (tsd->special_state.perfect_hiding || !is_detect))
+						if (((TBL_PC*)src)->special_state.intravision && skill_get_inf(skill_id) == INF_SUPPORT_SKILL)
+							return true;
 						return false;
 					if (tsc->data[SC_CLOAKINGEXCEED] && !is_boss && (tsd->special_state.perfect_hiding || is_detect))
 						return false; // Works against insect and demon but not against bosses
